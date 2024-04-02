@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { useNavigate } from 'react-router-dom';
 import './sigincss.css';
+import logo from '../img/logo.png';
+
 
 
 const SignUp = () => {
@@ -43,7 +45,7 @@ const SignUp = () => {
     <div>
       <p className="reg"><a href="/signin">Войти</a></p>
       <div className="blue">
-      <img className="logo" src="https://media.discordapp.net/attachments/896756748331929643/1213832655745851402/image.png?ex=661bd2c1&is=66095dc1&hm=bb8544d12957fd287c4cd5d9faf51cbe073dff105225ad920db5647fdfd19c55&=&format=webp&quality=lossless" alt="Logo" />
+      <img className="logo" src={logo} alt="Logo" />
       </div>
       <div className="blue2"></div>
       <form onSubmit={register}>
