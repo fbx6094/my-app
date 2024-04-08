@@ -5,6 +5,21 @@
     height: 6%;
     background-color: #044AF0;
   }
+.error{
+  position: absolute;
+  color: red;
+  top: 65%;
+  left: 52%;
+  transform: translate(-50%, -50%)
+}
+.error0{
+  position: absolute;
+  color: red;
+  top: 73%;
+  left: 52%;
+  transform: translate(-50%, -50%)
+
+}
   .continer{
     position: absolute;
     top: 20%;
@@ -55,6 +70,17 @@
     border-radius: 40px;
     border: none;
     cursor: pointer;
+}
+.knopka:hover{
+  animation: glowAnimation 2s infinite;
+}
+.knopka1:hover{
+  animation: glowAnimation 2s infinite;
+}
+@keyframes glowAnimation {
+  0% { box-shadow: 0 0 0 red; }
+  50% { box-shadow: 0 0 30px red; }
+  100% { box-shadow: 0 0 0 red; }
 }
 .blue2{
     position: absolute;

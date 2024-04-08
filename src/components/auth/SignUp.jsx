@@ -1,11 +1,10 @@
+import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { useNavigate } from 'react-router-dom';
 import './sigincss.css';
+import gsap from 'gsap';
 import logo from '../img/logo.png';
-
-
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -14,10 +13,11 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [copyPassword, setCopyPassword] = useState("");
   const [error, setError] = useState("");
+
   function register(e) {
     e.preventDefault();
     if (copyPassword !== password) {
-      setError("Passwords didn't match");
+      setError("Пароли не совпадают");
       return;
     }
     createUserWithEmailAndPassword(auth, email, password)
@@ -28,24 +28,45 @@ const SignUp = () => {
         setCopyPassword("");
         setPassword("");
         navigate("/home");
-
-
       })
       .catch((error) => console.log(error));
   }
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
   const handleButtonClick = () => {
-    // Ваша логика, выполняемая при нажатии на кнопку
     console.log('Button clicked!');
   };
+
+  useEffect(() => {
+    // Анимация для надписи "Вход"
+    gsap.fromTo('.regg', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, delay: 0, ease: 'power3.out' });
+  }, []);
+
+  useEffect(() => {
+    // Анимация появления ошибки
+    if (error) {
+      gsap.fromTo('.error0', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (!isChecked) return; // Не запускать анимацию, если кнопка не активна
+    const tlbtn = gsap.timeline({ repeat: -1, repeatDelay: 3 });
+    tlbtn
+      .to(".knopka1", { rotate: 5 })
+      .to(".knopka1", { rotate: -5 })
+      .to(".knopka1", { rotate: 5 })
+      .to(".knopka1", { rotate: 0 });
+  }, [isChecked]);
+
   return (
     <div>
       <p className="reg"><a href="/signin">Войти</a></p>
       <div className="blue">
-      <img className="logo" src={logo} alt="Logo" />
+        <img className="logo" src={logo} alt="Logo" />
       </div>
       <div className="blue2"></div>
       <form onSubmit={register}>
@@ -77,10 +98,10 @@ const SignUp = () => {
           onChange={handleCheckboxChange}
         />
         <button className={isChecked ? 'knopka1' : 'inactiveButton'}
-        onClick={handleButtonClick}
-        disabled={!isChecked}
+          onClick={handleButtonClick}
+          disabled={!isChecked}
         >Зарегистрироваться</button>
-        {error ? <p style={{ color: "red" }}>{error}</p> : ""}
+        {error ? <p className="error0" style={{ color: "red" }}>{error}</p> : ""}
       </form>
     </div>
   );
