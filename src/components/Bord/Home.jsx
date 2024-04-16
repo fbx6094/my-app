@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Homecss.css';
 
 
@@ -15,8 +15,14 @@ const App = () => {
         team_2_score_street_2: 4,
         team_2_score_street_3: 4,
         team_score_street_main: 2,
+        progress_bar_state: 0,
     });
-    const [timeLeft, setTimeLeft] = useState(120);
+    const sound = useRef(null);
+    const loader = useRef(null);
+    const startbtn = useRef(null);
+    const timeroff = useRef(null);
+    const timer = useRef(null);
+    // const [timeLeft, setTimeLeft] = useState(120);
     const [timerInterval, setTimerInterval] = useState(null);
     const StreetContainer = ({ label, score }) => (
         <div className="houses_container">
@@ -63,37 +69,14 @@ const App = () => {
             clearInterval(intervalId); // очищаем интервал при размонтировании компонента
         };
     }, []);
-    const updateTimer = () => {
-        const timerElement = document.getElementById("timer");
-
-        if (!timerElement) {
-            console.error("Элемент с id 'timer' не найден.");
-            return;
-        }
-
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-
-        const formattedMinutes = ("0" + minutes).slice(-2);
-        const formattedSeconds = ("0" + seconds).slice(-2);
-
-        timerElement.textContent = formattedMinutes + ":" + formattedSeconds;
-
-        setTimeLeft(prevTimeLeft => prevTimeLeft - 1);
-
-        if (timeLeft < 0) {
-            clearInterval(timerInterval);
-            timerElement.textContent = "Время вышло!";
-        }
-    };
 
     useEffect(() => {
         // Fetch initial data
         fetchData();
-    
+
         // Set up a 5-second interval to fetch data
         const intervalId = setInterval(fetchData, 5000);
-    
+
         // Update or create the viewport meta tag
         const metaTag = document.querySelector('meta[name="viewport"]');
         if (metaTag) {
@@ -106,19 +89,132 @@ const App = () => {
             newMetaTag.content = 'width=device-width, initial-scale=1.0';
             document.head.appendChild(newMetaTag);
         }
-    
+
         // Cleanup: clear the interval on component unmount
         return () => {
             clearInterval(intervalId);
         };
     }, []); // Empty dependency array means this effect runs once on mount
-    
-    useEffect(() => {
-        const timerInterval = setInterval(updateTimer, 1000);
+    const button_hide = () => {
+        startbtn.current.style.display = "none";
+        timer.current.style.display = "block";
+        loader.current.style.display = "block";
+    };
 
-        return () => clearInterval(timerInterval);
-    }, [timeLeft]);
+    const backtostart = () => {
+        timeroff.current.style.display = "none";
+        startbtn.current.style.display = "block";
+    };
+
+    const timerof = () => {
+        timeroff.current.style.display = 'block';
+        timer.current.style.display = 'none';
+    };
+
+    const timerfnc = () => {
+        // Устанавливаем время в секундах
+        var timeLeft = 120;
+
+        // Функция для обновления таймера
+        function updateTimer() {
+            // Получаем элемент с id "timer"
+            var timerElement = timer.current;
+
+            // Вычисляем минуты и секунды
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+
+            // Добавляем ведущий ноль, если значение минут или секунд меньше 10
+            var formattedMinutes = ("0" + minutes).slice(-2);
+            var formattedSeconds = ("0" + seconds).slice(-2);
+
+            // Обновляем текст в элементе таймера
+            timerElement.textContent = formattedMinutes + ":" + formattedSeconds;
+
+            // Уменьшаем время на 1 секунду
+            timeLeft--;
+
+            // Проверяем, если время закончилось, останавливаем таймер
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                playSound1();
+                // timerElement.textContent = "Время вышло!";
+                timerof();
+            }
+        }
+
+        // Запускаем таймер каждую секунду
+        var timerInterval = setInterval(updateTimer, 1000);
+    };
+
+    const playSound1 = () => {
+        sound.current.play();
+    };
+
+    const handleClick = () => {
+        button_hide();
+        timerfnc();
+        // playSound1();
+    };
+
+    // useEffect(() => {
+    //     const timerInterval = setInterval(updateTimer, 1000);
+
+    //     return () => clearInterval(timerInterval);
+    // }, [timeLeft]);
+
+    useEffect(() => {
+        sound.current = new Audio('/images/snd.mp3');
+        sound.current.load();
+    }, []);
+
+    const timerCheckElement = data.progress_bar_state;
+    // console.log(timerCheckElement);
+    let prevTimer = 0;
+    let timerToggled = false;
+
+    const checkTimer = () => {
+        setInterval(() => {
+            if (prevTimer !== timerCheckElement) {
+                timerToggled = false;
+            }
+            if (timerToggled === true) {
+                return;
+            }
+            if (timerCheckElement === prevTimer) {
+                return;
+            }
+            if (timerToggled === false) {
+                if (timerCheckElement === 1) {
+                    timerToggled = true;
+                    prevTimer = timerCheckElement;
+                    console.log("timer started. VALUE = 1");
+                    timerStartFromCpl();
+                } else if (timerCheckElement === 2) {
+                    console.log("restarting by timer. VALUE = 2");
+                    restart();
+                }
+            } else {
+                // console.log("err");
+                console.log("waiting")
+            }
+        }, 500);
+    };
+    setInterval(() => {
+        checkTimer();
+    }, 250);
+
+    const restart = () => {
+        window.location.reload();
+    };
+
+    const timerStartFromCpl = () => {
+        button_hide();
+        timerfnc();
+    }
+
     return (
+
 
         <div className="app">
             <div className="area">
@@ -143,18 +239,45 @@ const App = () => {
             <div className="separator" style={{ position: 'absolute', top: '.5%', left: '63.5%' }}></div>
             <div className="title_right" style={{ position: 'absolute', top: '1.6%', left: '74%' }}>Квалификационный матч 1</div>
             <div className="logo_left"></div>
-            <p className='VS'>VS</p>
+            <h1 id="timer_check_element">{data.progress_bar_state}</h1>
+            <div className="app" id="app">
+                <audio id="sound" src="/src/components/img/snd.mp3" preload="auto" ref={sound} />
+                <div className="item">
+                    <div className="timer_background">
+                        <div className="loader" id="loader" ref={loader}>
+                            <div className="loading_1"></div>
+                        </div>
+                    </div>
+                    <div className="timer">
+                        <span id="startbtn" style={{ fontSize: '35px', color: 'rgb(0, 0, 0)' }} ref={startbtn} onClick={handleClick}>
+                            Матч скоро начнётся!
+                        </span>
+                        <span id="timeroff" style={{ fontSize: '35px' }} ref={timeroff}>
+                            Время истекло!
+                        </span>
+                        <h1 id="timer" style={{ fontWeight: 'bold', fontSize: 'larger', zIndex: 11, position: 'absolute', left: '50%', transform: 'translate(-50%)' }} ref={timer}>
+                            02:00
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            {/* <p className='VS'>VS</p> */}
             <div className="logo_right"></div>
-    
+
             <div className="blue_upper_background_with_curve"></div>
             <div className="score_background"></div>
             <div className="blue_upper_background"></div>
+
             <div className="score">{`${data.score_team_1}:${data.score_team_2}`}</div>
-      
+
             <div className="item_for_widing0">{data.name_team_1}</div>
             <div className="item_for_widing1">{data.name_team_2}</div>
 
-            <div className="item">
+
+
+
+
+            {/* <div className="item">
                 <div className="timer_background">
                     <div className="loader">
                         <div className="loading_1"></div>
@@ -163,7 +286,7 @@ const App = () => {
                 <div className="timer">
                     <h1 id="timer" style={{ fontWeight: 'bold', fontSize: 'larger', zIndex: '11', position: 'absolute', left: '50%', transform: 'translate(-50%)' }}>02:00</h1>
                 </div>
-            </div>
+            </div> */}
             < div className="street-container-1" >
                 <StreetContainer score={data.team_1_score_street_1} />
                 <div className='street-label'>Улица Медиа</div>
