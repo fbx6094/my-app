@@ -41,19 +41,17 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    // Анимация для надписи "Вход"
     gsap.fromTo('.regg', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, delay: 0, ease: 'power3.out' });
   }, []);
 
   useEffect(() => {
-    // Анимация появления ошибки
     if (error) {
       gsap.fromTo('.error0', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
     }
   }, [error]);
 
   useEffect(() => {
-    if (!isChecked) return; // Не запускать анимацию, если кнопка не активна
+    if (!isChecked) return; 
     const tlbtn = gsap.timeline({ repeat: -1, repeatDelay: 3 });
     tlbtn
       .to(".knopka1", { rotate: 5 })

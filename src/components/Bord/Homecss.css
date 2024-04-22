@@ -1,5 +1,67 @@
 #app * {
     z-index: 10;
+
+}
+
+.loader {
+    width: 455px;
+    margin: 0 auto 70px;
+    border: 2px;
+    border-color: black;
+    position: absolute;
+    display: none;
+}
+.timercss{
+    fontWeight: 'bold'; fontSize: 'larger'; zIndex: 11; position: 'absolute'; left: '50%'; transform: 'translate(-50%)';
+}
+.loader .loading_1:before {
+    z-index: 4;
+    content: "";
+    display: block;
+    position: absolute;
+    left: -30px;
+    border-radius: 16px;
+    border-radius: 16px;
+    border: 2px;
+    border-color: black;
+    width: 0;
+    height: 61px;
+    background-color: #12B72D;
+    opacity: 0.8;
+    animation: load 131s linear infinite;
+    animation: load 131s linear infinite;
+    animation-iteration-count: 1;
+}
+
+@keyframes load {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        top: 10px;
+
+    }
+
+    12.5% {
+        top: 30px;
+    }
+}
+
+#timer {
+    display: none;
+}
+
+#timeroff {
+    display: none;
 }
 
 .backroudn_for_titles {
@@ -63,7 +125,9 @@
     line-height: normal;
 
 }
-
+.match{
+    display: none;
+}
 .main_background {
     width: 1500px;
     height: 794px;
@@ -121,6 +185,7 @@
     /* top: 16%; */
     left: 50%;
     transform: translate(-50%);
+    /* z-index: 9999; */
 
 }
 
@@ -213,11 +278,12 @@
 
 }
 
-.streets_container.skyscraper { 
+.streets_container.skyscraper {
     position: absolute;
     left: 0%;
 }
-.skyscraper-container{
+
+.skyscraper-container {
     position: absolute;
     top: 40%;
     left: 47.5%;
@@ -231,7 +297,8 @@
 }
 
 .street_label {
-    color: rgba(114, 114, 114, 0.804);;
+    color: rgba(114, 114, 114, 0.804);
+    ;
     font-family: Proxima Nova Condensed;
     font-size: 14px;
     font-style: normal;
@@ -487,7 +554,7 @@
     /* clip-path: circle(213px at center); */
     clip-path: inset(0 0 0 0 round 35px);
     background: rgba(191, 191, 191, 0);
-    width: 0;
+    width: 425px;
     height: 61px;
     /* background-color: red; */
     position: absolute;
@@ -510,7 +577,8 @@
     text-align: center;
     flex-shrink: 0;
 }
-.VS{
+
+.VS {
     position: absolute;
     font-size: 90px;
     color: #FFF;
@@ -738,43 +806,52 @@
         top: 30px;
     }
 }
-.street-container-1{
+
+.street-container-1 {
     position: absolute;
-     top: 45%;
-     left: 12%;
-  }
-.street-container-2{
-    position: absolute;
-     top: 45%;
-     left: 20%;
+    top: 45%;
+    left: 12%;
 }
-.street-container-3{
+
+.street-container-2 {
     position: absolute;
-     top: 45%;
-     left: 28%;
+    top: 45%;
+    left: 20%;
 }
-.street-container-4{
+
+.street-container-3 {
     position: absolute;
-     top: 45%;
-     left: 66%;
+    top: 45%;
+    left: 28%;
 }
-.street-container-5{
+
+.street-container-4 {
     position: absolute;
-     top: 45%;
-     left: 74%;
+    top: 45%;
+    left: 66%;
 }
-.street-container-6{
+
+.street-container-5 {
     position: absolute;
-     top: 45%;
-     left: 82%;
+    top: 45%;
+    left: 74%;
 }
+
+.street-container-6 {
+    position: absolute;
+    top: 45%;
+    left: 82%;
+}
+
 .ulmedia {
     position: absolute;
 }
-.logoo{
- width: 0%;       
+
+.logoo {
+    width: 0%;
 }
-.item_for_widing0{
+
+.item_for_widing0 {
     color: #fff;
     position: absolute;
     top: 18%;
@@ -791,7 +868,8 @@
 
 
 }
-.item_for_widing1{
+
+.item_for_widing1 {
     color: #fff;
     position: absolute;
     top: 18%;
@@ -808,75 +886,92 @@
 
 
 }
-@media  (max-width: 1500px) {
-    .blue_upper_background{
+
+@media (max-width: 1500px) {
+    .blue_upper_background {
         width: 120%;
         height: 10%;
         top: 45%;
         left: 70%;
     }
-    .blue_upper_background_with_curve{
+
+    .blue_upper_background_with_curve {
         width: 120.1%;
         top: 39.5%;
         left: 70%;
     }
-    .main_background{
+
+    .main_background {
         width: 120%;
         left: 70%;
         height: 60%;
         top: 70%;
     }
-    .circles{
+
+    .circles {
         width: 93%;
         height: 96.6%;
 
     }
-    .area{
+
+
+    .area {
         width: 154%;
         height: 156%;
     }
+
     .house_white {
         width: 25px;
         height: 25px;
     }
-    .house_green{
+
+    .house_green {
         width: 25px;
         height: 25px;
 
     }
-    .triangle{
+
+    .triangle {
         width: 0px;
     }
-      .street-container-1{
+
+    .street-container-1 {
         position: absolute;
         left: 15%;
         top: 65%;
-      }
-      .street-container-2{
+    }
+
+    .street-container-2 {
         position: absolute;
         left: 30%;
         top: 65%;
     }
-    .street-container-3{
-        position: absolute;
-         top: 65%;
-         left: 45%;
-    }
-    .street-container-4{
+
+    .street-container-3 {
         position: absolute;
         top: 65%;
-         left: 87%;
+        left: 45%;
     }
-    .street-container-5{
+
+
+    .street-container-4 {
+        position: absolute;
+        top: 65%;
+        left: 87%;
+    }
+
+    .street-container-5 {
         position: absolute;
         top: 65%;
         left: 102%;
     }
-    .street-container-6{
+
+    .street-container-6 {
         position: absolute;
-         top: 65%;
-         left: 118%;
+        top: 65%;
+        left: 118%;
     }
+
     .triangle_green {
 
         width: 0;
@@ -885,8 +980,9 @@
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
         border-bottom: 20px solid #12B72D;
-    
+
     }
+
     .triangle {
 
         width: 0;
@@ -895,98 +991,127 @@
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
         border-bottom: 20px solid white;
-    
+
     }
-    .title_left{
+
+    .title_left {
         font-size: 0px;
     }
-    .title_center{
+
+    .title_center {
         font-size: 0px;
     }
-    .title_right{
+
+    .title_right {
         font-size: 0px;
     }
-    .separator{
+
+    .separator {
         width: 0%;
     }
-    .backroudn_for_titles{
+
+    .backroudn_for_titles {
         width: 0%;
     }
-    .item_for_widing{
+
+    .item_for_widing {
         width: 0%;
     }
-    .score_background{
+
+    .score_background {
         width: 40%;
-        height: 8%;  
+        height: 8%;
         top: 52%;
         left: 70%;
     }
-    .score{
+
+    .score {
         font-size: 60px;
         top: 57%;
         width: 50%;
         left: 70%;
     }
-    .table_row{
+
+    .table_row {
         width: 80%;
         column-gap: 280px;
         height: 65%;
     }
-    .item_for_widing{
+
+    .item_for_widing {
         font-size: 30px;
         width: 30%;
     }
-    .street-label{
+
+    .street-label {
         font-size: 0px;
 
     }
-    .skyscraper-container{
+
+    .skyscraper-container {
         top: 62%;
         left: 57%;
 
     }
-    .big_house_white{
+
+    .big_house_white {
         width: 40%;
         height: 40px;
 
     }
-    .big_house_green{
+
+    .big_house_green {
         width: 40%;
         height: 40px;
     }
-    .big_triangle{
+
+    .big_triangle {
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
         border-bottom: 30px solid rgb(255, 255, 255);
-        
+
 
     }
-    .timer{
-        width: 0%;
-    }
-    .timer_background{
-        width: 0%;
-    }
-    #timer{
-        width: 0%;
-    }
-    .loading_1:before{
-        width: 0%;
-    }
     .item{
+        position: absolute;
+        top: 44%;
+        left: 69%;
+        /* transform: translate(-50%); */
+    }
+/* 
+    .timer {
         width: 0%;
     }
-    .logo_right{
+
+    .timer_background {
+        width: 0%;
+    }
+
+    #timer {
+        width: 0%;
+    } */
+
+    /* .loading_1:before {
+        width: 0%;
+    } */
+
+    /* .item {
+        width: 0%;
+    } */
+
+    .logo_right {
         left: 130%;
     }
-    .logoo{
+
+    .logoo {
         position: absolute;
         top: 20%;
         width: 200%;
         height: 18%;
         left: -68%;
     }
-    .VS{
+
+    .VS {
         position: absolute;
         font-size: 50px;
         color: #FFF;
@@ -994,18 +1119,26 @@
         top: 38%;
         z-index: 999;
     }
-    .item_for_widing0{
+
+    .item_for_widing0 {
         top: 45%;
         font-size: 20px;
         left: -45%;
     }
-    .item_for_widing1{
+
+    .item_for_widing1 {
         top: 45%;
         font-size: 20px;
         left: 30%;
     }
 }
-@media (min-width: 440px) and (max-width: 1500px) {
+@media(max-width:1010px){
+    .item{
+        width: 350px;
+    }
+}
+
+@media  (max-width: 1500px) {
     .item_for_widing0 {
         top: 45%;
         font-size: 30px;
@@ -1016,18 +1149,93 @@
     .item_for_widing1 {
         top: 45%;
         font-size: 30px;
-        left: 90%; 
+        left: 90%;
         width: 10%;
     }
 }
-@media (min-width: 100px) and (max-width: 441px) {
+@media (max-width: 850px) {
+    .item{
+        width: 300px;
+    }
+
+}
+@media (max-width: 850px) {
+    .item{
+        width: 250px;
+    }
+    .item_for_widing0{
+        left: 20% !important;
+    }
+    .item_for_widing1{
+        left: 100% !important;
+    }
+    #startbtn{
+        font-size: 50% !important;
+    }
+
+}
+@media (max-width: 561px) {
+    .item{
+        width: 200px;
+    }
+    .item_for_widing0{
+        left: 14% !important;
+    }
+    .item_for_widing1{
+        left: 92% !important;
+    }
+    #startbtn{
+        font-size: 40% !important;
+    }
+
+
+}
+@media(max-width: 441px) {
     .area {
         height: 200%;
         width: 200%;
+    }
+    .match{
+        display: block;
+    }
+    #startbtn{
+        display: none;
+    }
+
+    #startbtn0{
+        font-size:40% !important;
+
+
     }
 
     .score {
         font-size: 45px;
     }
-}
+    .item_for_widing0{
+        left: 14% !important;
+        font-size: 130%;
+    }
+    .item_for_widing1{
+        left: 92% !important;
+        font-size: 130%;
+    }
+    .item{
+        width: 120px;
+    }
+    .timercss{
+        font-size: 80%;
+    }
 
+}
+@media(max-width: 322px) {
+    .item_for_widing0{
+        left: 18% !important;
+        font-size: 100%;
+    }
+    .item_for_widing1{
+        left: 92% !important;
+        font-size: 100%;
+    }
+    
+
+}

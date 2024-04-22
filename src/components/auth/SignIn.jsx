@@ -27,10 +27,7 @@ const SignIn = () => {
   }, []);
   
   useEffect(() => {
-    // Анимация появления ошибки
     gsap.fromTo('.error', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-
-    // Анимация для надписи "Вход"
     gsap.fromTo('.vhod', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
   }, [error]);
   function logIn(e) {
