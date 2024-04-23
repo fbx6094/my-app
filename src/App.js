@@ -5,6 +5,7 @@ import SignIn from "./components/auth/SignIn";
 import AuthDetails from "./components/auth/AuthDetails";
 import Admin from "./components/Bord/Admin";
 import Home from "./components/Bord/Home";
+import Test from './components/Bord/Test';
 
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/authdetails" element={<AuthDetails />} />
           <Route path="/home" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/test" element={<Test/>}/>
         </Routes>
       </div>
     </Router>

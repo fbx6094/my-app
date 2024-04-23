@@ -20,9 +20,15 @@ const App = () => {
     const sound = useRef(null);
     const loader = useRef(null);
     const startbtn = useRef(null);
+<<<<<<< HEAD
     const startbtn0 = useRef(null);
     const timeroff = useRef(null);
     const timer = useRef(null);
+=======
+    const timeroff = useRef(null);
+    const timer = useRef(null);
+    // const [timeLeft, setTimeLeft] = useState(120);
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     const [timerInterval, setTimerInterval] = useState(null);
     const StreetContainer = ({ label, score }) => (
         <div className="houses_container">
@@ -73,7 +79,14 @@ const App = () => {
     useEffect(() => {
         fetchData();
 
+<<<<<<< HEAD
         const intervalId = setInterval(fetchData, 5000);
+=======
+        // Set up a 5-second interval to fetch data
+        const intervalId = setInterval(fetchData, 5000);
+
+        // Update or create the viewport meta tag
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
         const metaTag = document.querySelector('meta[name="viewport"]');
         if (metaTag) {
             metaTag.content = 'width=device-width, initial-scale=1.0';
@@ -83,6 +96,7 @@ const App = () => {
             newMetaTag.content = 'width=device-width, initial-scale=1.0';
             document.head.appendChild(newMetaTag);
         }
+<<<<<<< HEAD
         return () => {
             clearInterval(intervalId);
         };
@@ -93,6 +107,23 @@ const App = () => {
         timer.current.style.display = "block";
         loader.current.style.display = "block";
 
+=======
+
+        // Cleanup: clear the interval on component unmount
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []); // Empty dependency array means this effect runs once on mount
+    const button_hide = () => {
+        startbtn.current.style.display = "none";
+        timer.current.style.display = "block";
+        loader.current.style.display = "block";
+    };
+
+    const backtostart = () => {
+        timeroff.current.style.display = "none";
+        startbtn.current.style.display = "block";
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     };
 
     const timerof = () => {
@@ -101,6 +132,7 @@ const App = () => {
     };
 
     const timerfnc = () => {
+<<<<<<< HEAD
         var timeLeft = 120;
 
         function updateTimer() {
@@ -115,23 +147,81 @@ const App = () => {
 
             if (timeLeft < 0) {
                 clearInterval(timerInterval);
+=======
+        // Устанавливаем время в секундах
+        var timeLeft = 120;
+
+        // Функция для обновления таймера
+        function updateTimer() {
+            // Получаем элемент с id "timer"
+            var timerElement = timer.current;
+
+            // Вычисляем минуты и секунды
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+
+            // Добавляем ведущий ноль, если значение минут или секунд меньше 10
+            var formattedMinutes = ("0" + minutes).slice(-2);
+            var formattedSeconds = ("0" + seconds).slice(-2);
+
+            // Обновляем текст в элементе таймера
+            timerElement.textContent = formattedMinutes + ":" + formattedSeconds;
+
+            // Уменьшаем время на 1 секунду
+            timeLeft--;
+
+            // Проверяем, если время закончилось, останавливаем таймер
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                playSound1();
+                // timerElement.textContent = "Время вышло!";
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
                 timerof();
             }
         }
 
+<<<<<<< HEAD
         var timerInterval = setInterval(updateTimer, 1000);
     };
 
 
+=======
+        // Запускаем таймер каждую секунду
+        var timerInterval = setInterval(updateTimer, 1000);
+    };
+
+    const playSound1 = () => {
+        sound.current.play();
+    };
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
 
     const handleClick = () => {
         button_hide();
         timerfnc();
+<<<<<<< HEAD
     };
 
 
 
     const timerCheckElement = data.progress_bar_state;
+=======
+        // playSound1();
+    };
+
+    // useEffect(() => {
+    //     const timerInterval = setInterval(updateTimer, 1000);
+
+    //     return () => clearInterval(timerInterval);
+    // }, [timeLeft]);
+
+    useEffect(() => {
+        sound.current = new Audio('/images/snd.mp3');
+        sound.current.load();
+    }, []);
+
+    const timerCheckElement = data.progress_bar_state;
+    // console.log(timerCheckElement);
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     let prevTimer = 0;
     let timerToggled = false;
 
@@ -157,6 +247,10 @@ const App = () => {
                     restart();
                 }
             } else {
+<<<<<<< HEAD
+=======
+                // console.log("err");
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
                 console.log("waiting")
             }
         }, 500);
@@ -202,7 +296,11 @@ const App = () => {
             <div className="logo_left"></div>
             <h1 id="timer_check_element">{data.progress_bar_state}</h1>
             <div className="app" id="app">
+<<<<<<< HEAD
                
+=======
+                <audio id="sound" src="/src/components/img/snd.mp3" preload="auto" ref={sound} />
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
                 <div className="item">
                     <div className="timer_background">
                         <div className="loader" id="loader" ref={loader}>
@@ -210,22 +308,35 @@ const App = () => {
                         </div>
                     </div>
                     <div className="timer">
+<<<<<<< HEAD
                         <span id="startbtn" style={{ fontSize: '35px', color: 'rgb(0, 0, 0)' }} ref={startbtn} >
                             Матч скоро начнётся!
                             
                         </span>
                         <span id="startbtn0" className='match' style={{ fontSize: '35px', color: 'rgb(0, 0, 0)' }} ref={startbtn0}>
                             Матч скоро <br/>начнётся!
+=======
+                        <span id="startbtn" style={{ fontSize: '35px', color: 'rgb(0, 0, 0)' }} ref={startbtn} onClick={handleClick}>
+                            Матч скоро начнётся!
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
                         </span>
                         <span id="timeroff" style={{ fontSize: '35px' }} ref={timeroff}>
                             Время истекло!
                         </span>
+<<<<<<< HEAD
                         <h1 id="timer" className='timercss' ref={timer}>
+=======
+                        <h1 id="timer" style={{ fontWeight: 'bold', fontSize: 'larger', zIndex: 11, position: 'absolute', left: '50%', transform: 'translate(-50%)' }} ref={timer}>
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
                             02:00
                         </h1>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+            {/* <p className='VS'>VS</p> */}
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
             <div className="logo_right"></div>
 
             <div className="blue_upper_background_with_curve"></div>
@@ -236,6 +347,24 @@ const App = () => {
 
             <div className="item_for_widing0">{data.name_team_1}</div>
             <div className="item_for_widing1">{data.name_team_2}</div>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+            {/* <div className="item">
+                <div className="timer_background">
+                    <div className="loader">
+                        <div className="loading_1"></div>
+                    </div>
+                </div>
+                <div className="timer">
+                    <h1 id="timer" style={{ fontWeight: 'bold', fontSize: 'larger', zIndex: '11', position: 'absolute', left: '50%', transform: 'translate(-50%)' }}>02:00</h1>
+                </div>
+            </div> */}
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
             < div className="street-container-1" >
                 <StreetContainer score={data.team_1_score_street_1} />
                 <div className='street-label'>Улица Медиа</div>

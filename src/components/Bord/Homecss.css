@@ -11,15 +11,23 @@
     position: absolute;
     display: none;
 }
+<<<<<<< HEAD
 .timercss{
     fontWeight: 'bold'; fontSize: 'larger'; zIndex: 11; position: 'absolute'; left: '50%'; transform: 'translate(-50%)';
 }
+=======
+
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
 .loader .loading_1:before {
     z-index: 4;
     content: "";
     display: block;
     position: absolute;
     left: -30px;
+<<<<<<< HEAD
+=======
+    /* transform: translate(-50%); */
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     border-radius: 16px;
     border-radius: 16px;
     border: 2px;
@@ -1132,13 +1140,21 @@
         left: 30%;
     }
 }
+<<<<<<< HEAD
 @media(max-width:1010px){
+=======
+@media(min-width:440px)  and (max-width:1010px){
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     .item{
         width: 350px;
     }
 }
 
+<<<<<<< HEAD
 @media  (max-width: 1500px) {
+=======
+@media (min-width: 440px) and (max-width: 1500px) {
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     .item_for_widing0 {
         top: 45%;
         font-size: 30px;
@@ -1153,6 +1169,7 @@
         width: 10%;
     }
 }
+<<<<<<< HEAD
 @media (max-width: 850px) {
     .item{
         width: 300px;
@@ -1191,6 +1208,10 @@
 
 }
 @media(max-width: 441px) {
+=======
+
+@media (min-width: 100px) and (max-width: 441px) {
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
     .area {
         height: 200%;
         width: 200%;
@@ -1211,6 +1232,7 @@
     .score {
         font-size: 45px;
     }
+<<<<<<< HEAD
     .item_for_widing0{
         left: 14% !important;
         font-size: 130%;
@@ -1238,4 +1260,6 @@
     }
     
 
+=======
+>>>>>>> 95c9950c6ca1b8dde89a8bd354ca090855accd24
 }
